@@ -1,4 +1,4 @@
-# Portfolio – Koné Fatimat
+# Portfolio – KONE FATIMAT MERAJA BENEDICTE
 
 Portfolio personnel développé en **HTML, CSS et JavaScript**, à partir d'une maquette conçue sur **Figma**.
 
