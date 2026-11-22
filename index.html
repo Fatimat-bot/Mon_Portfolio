@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koné Fatimat | Portfolio</title>
+  <meta name="description" content="Portfolio de Koné Fatimat, étudiante en Génie Logiciel à l'IIT : projets web et mobile, compétences, certifications et contact.">
+
+  <!-- Icône de l'onglet (un emoji, sans fichier image) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+  <!-- Polices Google : Karla (texte) et Caveat (manuscrite) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Devicon : logos des technologies (HTML, CSS, JS...) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <a href="#accueil" class="logo">&lt;KFMB /&gt;</a>
+
+    <nav class="nav" id="nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#outils">Compétences</a>
+      <a href="#projets">Projets</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ================= ACCUEIL ================= -->
+    <section id="accueil" class="hero">
+      <div class="hero-texte">
+        <h1 class="titre-surligne">Bonjour ! Je suis Fatimat 👋</h1>
+        <h2>Étudiante en Génie Logiciel · Développeuse web &amp; mobile</h2>
+        <p>
+          Je conçois des applications <span class="rose">simples</span> et
+          <span class="rose">utiles</span>, pensées pour répondre à des besoins
+          concrets en Côte d'Ivoire.
+        </p>
+        <div class="boutons">
+          <a href="#projets" class="btn">Voir mes projets</a>
+          <a href="#contact" class="btn btn-contour">Me contacter</a>
+        </div>
+      </div>
+      <img src="images/photo.jpg" alt="Photo de Koné Fatimat" class="photo">
+
+      <!-- Flèche pour descendre vers la suite -->
+      <a href="#apropos" class="fleche" aria-label="Descendre vers la suite"></a>
+    </section>
+
+    <!-- ================= À PROPOS ================= -->
+    <section id="apropos" class="section apropos">
+      <div class="apropos-texte">
+        <h2 class="titre-section titre-surligne">À propos de moi 🌸</h2>
+        <p>
+          Merci d'avoir lu jusqu'ici ! 🤗 Je suis étudiante en
+          <span class="rose">Licence 2 Informatique et Génie Logiciel</span> à l'Institut
+          Ivoirien de Technologie. Le développement web et mobile et l'intelligence
+          artificielle me passionnent. J'aime transformer une idée en une interface
+          simple et agréable, du croquis sur Figma jusqu'au code.
+        </p>
+        <p>
+          J'aime aussi relever des défis : j'ai participé au Hackathon IIT organisé à la Journée du Code (2e place), au
+          Business Game (2e place) et au DataTour 2026
+          <span class="petite-note">(en équipe TechnoFun !)</span>. Je suis aussi vice-présidente
+          du club d'anglais de mon école. En dehors du code, j'aime la lecture, le sport et l'apprentissage de nouvelles cultures. N'hésite pas à m'écrire si
+          tu veux échanger sur un projet ! 😊
+        </p>
+      </div>
+
+      <!-- Photo facultative : supprime cette ligne pour ne pas afficher de photo,
+           le texte prendra alors toute la largeur -->
+      <img src="images/Apropos.jpg" alt="Koné Fatimat" class="photo-apropos">
+    </section>
+
+    <!-- ================= MA BOÎTE À OUTILS ================= -->
+    <section id="outils" class="section">
+      <h2 class="titre-section titre-surligne">Ma boîte à outils 💻</h2>
+      <p class="note">ce que je sais faire</p>
+
+      <div class="groupes-outils">
+        <div class="groupe-outils">
+          <h3>Développement web</h3>
+          <ul class="grille-outils">
+            <li><i class="devicon-html5-plain"></i><span>HTML5</span></li>
+            <li><i class="devicon-css3-plain"></i><span>CSS3</span></li>
+            <li><i class="devicon-javascript-plain"></i><span>JavaScript</span></li>
+            <li><i class="devicon-bootstrap-plain"></i><span>Bootstrap</span></li>
+          </ul>
+        </div>
+        <div class="groupe-outils">
+          <h3>Développement mobile</h3>
+          <ul class="grille-outils">
+            <li><i class="devicon-flutter-plain"></i><span>Flutter</span></li>
+            <li><i class="devicon-dart-plain"></i><span>Dart</span></li>
+          </ul>
+        </div>
+        <div class="groupe-outils">
+          <h3>Programmation</h3>
+          <ul class="grille-outils">
+            <li><i class="devicon-python-plain"></i><span>Python</span></li>
+            <li><i class="devicon-java-plain"></i><span>Java</span></li>
+            <li><i class="devicon-c-plain"></i><span>C</span></li>
+          </ul>
+        </div>
+        <div class="groupe-outils">
+          <h3>Outils</h3>
+          <ul class="grille-outils">
+            <li><i class="devicon-git-plain"></i><span>Git</span></li>
+            <li><i class="devicon-github-original"></i><span>GitHub</span></li>
+            <li><i class="devicon-vscode-plain"></i><span>VS Code</span></li>
+            <li><i class="devicon-figma-plain"></i><span>Figma</span></li>
+            <li><i class="devicon-visualstudio-plain"></i><span>Visual Studio</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJETS ================= -->
+    <section id="projets" class="section">
+      <h2 class="titre-section titre-surligne">Mes projets</h2>
+      <p class="note">survole un projet pour en savoir plus !</p>
+
+      <div class="grille-projets">
+
+        <!-- Projet 1 -->
+        <article class="carte">
+          <img src="images/projet1.png" alt="Site vitrine Voile & Élégance">
+          <div class="carte-survol">
+            <h3>Voile &amp; Élégance</h3>
+            <p>Un site vitrine pour une boutique de mode modeste à Abidjan, qui présente ses collections avec leurs prix et permet aux clientes de la contacter facilement.</p>
+            <ul class="tags">
+              <li>HTML5</li><li>CSS3</li><li>Bootstrap 5</li>
+            </ul>
+            <div class="boutons">
+              <a href="https://fatimat-bot.github.io/Voile_et_Elegance/" target="_blank" rel="noopener" class="btn btn-petit">Voir en ligne</a>
+              <a href="https://github.com/Fatimat-bot/Voile_et_Elegance" target="_blank" rel="noopener" class="btn btn-petit">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projet 2 -->
+        <article class="carte">
+          <img src="images/projet2.png" alt="Application mobile SODECI Tracker">
+          <div class="carte-survol">
+            <h3>SODECI Tracker</h3>
+            <p>Une application mobile qui aide les abonnés SODECI à suivre leur consommation d'eau, anticiper leur facture et épargner pour la payer.</p>
+            <ul class="tags">
+              <li>Flutter</li><li>Dart</li><li>Firebase</li>
+            </ul>
+            <div class="boutons">
+              <a href="https://github.com/Fatimat-bot/SODECI_TRACKER" target="_blank" rel="noopener" class="btn btn-petit">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projet 3 (projet personnel) -->
+        <article class="carte">
+          <img src="images/projet3.png" alt="Site d'anniversaire interactif">
+          <div class="carte-survol">
+            <h3>Site d'anniversaire 🎂</h3>
+            <p>Une carte d'anniversaire interactive en ligne : on souffle les bougies, on ouvre une lettre et on découvre des surprises en musique.</p>
+            <ul class="tags">
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+            </ul>
+            <div class="boutons">
+              <a href="https://fatimat-bot.github.io/Site-anniversaire/" target="_blank" rel="noopener" class="btn btn-petit">Voir en ligne</a>
+              <a href="https://github.com/Fatimat-bot/Site-anniversaire" target="_blank" rel="noopener" class="btn btn-petit">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ================= CV + CONTACT ================= -->
+    <div class="fond-rose">
+      <div class="deux-colonnes">
+
+        <!-- CV -->
+        <section id="cv">
+          <h2 class="titre-section titre-surligne">Mon CV</h2>
+
+          <h3>Formation</h3>
+          <div class="formation">
+            <p class="gras">Licence 2 · Informatique et Génie Logiciel</p>
+            <p class="gris">Institut Ivoirien de Technologie, Cocody · 09/2026 – en cours</p>
+          </div>
+          <div class="formation">
+            <p class="gras">Licence 1 · Informatique et Génie Logiciel</p>
+            <p class="gris">Institut Ivoirien de Technologie, Grand-Bassam · 10/2025 – 07/2026</p>
+          </div>
+
+          <h3>Certifications</h3>
+          <ul class="certifs">
+            <li>
+              <span class="coche">✓</span>
+              <div><strong>Network Technician Career Path</strong><small>Cisco Networking Academy · février 2026</small></div>
+              <a href="images/certif-cisco.pdf" target="_blank" rel="noopener">Voir →</a>
+            </li>
+            <li>
+              <span class="coche">✓</span>
+              <div><strong>DataTour 2026 – phase nationale</strong><small>CANSD, Data Afrique Hub · juin – juillet 2026</small></div>
+              <a href="images/certif-datatour.jpg" target="_blank" rel="noopener">Voir →</a>
+            </li>
+            <li>
+              <span class="coche">✓</span>
+              <div><strong>Hackathon IIT – 1re édition</strong><small>Club Informatique de l'IIT, Grand-Bassam</small></div>
+              <a href="images/certif-hackathon.pdf" target="_blank" rel="noopener">Voir →</a>
+            </li>
+            <li>
+              <span class="coche">✓</span>
+              <div><strong>Business Game 2025</strong><small>B-Club IIT, Grand-Bassam · 2025</small></div>
+              <a href="images/certif-business-game.pdf" target="_blank" rel="noopener">Voir →</a>
+            </li>
+          </ul>
+
+          <a href="CV_Kone_Fatimat.pdf" download class="btn">Télécharger mon CV</a>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <h2 class="titre-section titre-surligne">Me contacter</h2>
+          <p>Une question, un projet ou un stage ?<br>Écris-moi, je te réponds rapidement.</p>
+
+          <p class="infos-contact">
+            📧 <a href="mailto:konefatim.meraj@gmail.com">konefatim.meraj@gmail.com</a><br>
+            📍 Abidjan, Côte d'Ivoire<br>
+            ✅ Disponible pour un stage, un projet ou un hackathon
+          </p>
+
+          <!-- Réseaux sociaux en icônes (comme Sharon) -->
+          <div class="reseaux">
+            <a href="https://www.linkedin.com/in/meraja-fatim-kon%C3%A9-8055b038b/" target="_blank" rel="noopener" aria-label="Mon profil LinkedIn">
+              <i class="devicon-linkedin-plain"></i>
+            </a>
+            <a href="https://github.com/Fatimat-bot" target="_blank" rel="noopener" aria-label="Mon profil GitHub">
+              <i class="devicon-github-original"></i>
+            </a>
+          </div>
+
+          <!-- Le formulaire envoie vraiment le message grâce au service gratuit FormSubmit -->
+          <form id="formulaire" action="https://formsubmit.co/konefatim.meraj@gmail.com" method="POST">
+            <input type="text" id="nom" name="nom" placeholder="nom" required>
+            <input type="email" id="email" name="email" placeholder="e-mail" required>
+            <textarea id="message" name="message" rows="7" placeholder="message" required></textarea>
+            <button type="submit" class="btn">Envoyer</button>
+            <p id="confirmation" class="confirmation"></p>
+          </form>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p>© 2026 Koné Fatimat · Conçu et développé avec passion ❤️ KONE FATIMAT MERAJA BENEDICTE</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

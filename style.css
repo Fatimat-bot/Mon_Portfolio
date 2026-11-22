@@ -1,0 +1,826 @@
+/* =========================================================
+   1. VARIABLES : les couleurs et polices de la maquette
+   ========================================================= */
+:root {
+  --rose: #F26B6B;
+  --rose-pale: #FFF5F5;
+  --rose-bordure: #FBD5D5;
+  --texte: #555555;
+  --fonce: #333333;
+  --blanc: #FFFFFF;
+  --police: "Karla", Arial, sans-serif;
+  --manuscrite: "Caveat", cursive;
+}
+
+/* =========================================================
+   2. BASES : réinitialisation et styles généraux
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* la bordure et le padding sont inclus dans la largeur */
+}
+
+html {
+  scroll-behavior: smooth; /* défilement doux quand on clique sur le menu */
+}
+
+body {
+  font-family: var(--police);
+  color: var(--texte);
+  line-height: 1.6;
+  background: var(--blanc);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  color: var(--fonce);
+  line-height: 1.2;
+}
+
+/* Petites classes utiles */
+.rose { color: var(--rose); }
+.gras { font-weight: 700; }
+.gris { color: #888888; font-size: 0.95rem; }
+
+.note {
+  font-family: var(--manuscrite);
+  color: var(--rose);
+  font-size: 1.7rem;
+}
+
+/* Titre avec surlignage rose flou (comme Sharon) */
+.titre-surligne {
+  display: inline-block;
+  position: relative;
+  color: var(--rose);
+  z-index: 0;
+}
+.titre-surligne::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 0.08em;
+  height: 0.38em;
+  background: var(--rose);
+  opacity: 0.2;
+  filter: blur(3px);
+  border-radius: 6px;
+  z-index: -1; /* passe derrière le texte */
+}
+
+.titre-section {
+  font-size: 2.6rem;
+  margin-bottom: 0.3rem;
+}
+
+/* =========================================================
+   3. BOUTONS
+   ========================================================= */
+.btn {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--blanc);
+  border: 2px solid var(--rose);
+  padding: 0.85rem 1.8rem;
+  border-radius: 8px;
+  font-family: var(--police);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  background: #e65858;
+}
+
+.btn-contour {
+  background: transparent;
+  color: var(--rose);
+}
+.btn-contour:hover {
+  background: var(--rose);
+  color: var(--blanc);
+}
+
+.btn-petit {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.boutons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   4. HEADER (barre du haut, fixe)
+   ========================================================= */
+.header {
+  position: sticky; /* reste en haut pendant le défilement */
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 13%;
+  background: var(--blanc);
+  border-bottom: 1px solid #F3E1E1;
+}
+
+.logo {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--rose);
+}
+
+/* Menu : un panneau caché qui s'ouvre sous le burger (comme Sharon) */
+.nav {
+  position: absolute;
+  top: 100%;
+  right: 13%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-width: 200px;
+  padding: 1.5rem 2rem;
+  background: var(--blanc);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  /* caché au départ : invisible et légèrement remonté */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+/* Quand le JavaScript ajoute la classe "ouvert", le menu apparaît */
+.nav.ouvert {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav a {
+  font-weight: 500;
+  font-size: 1.15rem;
+  position: relative;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+/* soulignement qui s'agrandit au survol */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: var(--rose);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.nav a:hover,
+.nav a.active {
+  color: var(--rose);
+}
+.nav a:hover::after,
+.nav a.active::after {
+  width: 100%;
+}
+
+/* ---------- Le burger ---------- */
+.burger {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Les 3 barres, légèrement penchées (effet dessiné à la main) */
+.burger span {
+  position: absolute;
+  left: 3px;
+  width: 34px;
+  height: 5px;
+  background: var(--rose);
+  border-radius: 5px;
+  transform: rotate(-4deg);
+  transition: all 0.3s ease;
+}
+.burger span:nth-child(1) { top: 2px; }
+.burger span:nth-child(2) { top: 12px; width: 30px; left: 5px; }
+.burger span:nth-child(3) { top: 22px; }
+
+/* AU SURVOL : le burger se transforme en flèche vers le bas ⌄
+   (seulement sur les écrans avec une souris) */
+@media (hover: hover) {
+  .burger:not(.ouvert):hover span:nth-child(1) {
+    top: 12px;
+    left: 2px;
+    width: 20px;
+    transform: rotate(40deg);   /* branche gauche du V */
+  }
+  .burger:not(.ouvert):hover span:nth-child(2) {
+    opacity: 0;                 /* la barre du milieu disparaît */
+  }
+  .burger:not(.ouvert):hover span:nth-child(3) {
+    top: 12px;
+    left: 16px;
+    width: 20px;
+    transform: rotate(-40deg);  /* branche droite du V */
+  }
+}
+
+/* MENU OUVERT : le burger devient une croix ✕ */
+.burger.ouvert span:nth-child(1) {
+  top: 12px;
+  transform: rotate(45deg);
+}
+.burger.ouvert span:nth-child(2) {
+  opacity: 0;
+}
+.burger.ouvert span:nth-child(3) {
+  top: 12px;
+  transform: rotate(-45deg);
+}
+
+/* =========================================================
+   5. ACCUEIL (HERO)
+   ========================================================= */
+.hero {
+  position: relative; /* pour placer la flèche en bas */
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 3rem 13%;
+}
+
+.hero-texte {
+  max-width: 720px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.hero-texte > p:not(.note) {
+  font-size: 1.35rem;
+  margin-bottom: 2rem;
+}
+
+.photo {
+  width: 340px;
+  height: 340px;
+  object-fit: cover; /* la photo remplit le cercle sans être déformée */
+  border-radius: 50%;
+  background: var(--rose);
+  border: 8px solid var(--rose);
+  flex-shrink: 0;
+}
+
+/* Flèche en bas de l'accueil : un "V" qui rebondit */
+.fleche {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  border-right: 5px solid var(--rose);
+  border-bottom: 5px solid var(--rose);
+  border-radius: 3px;
+  transform: translateX(-50%) rotate(45deg); /* le carré tourné devient un V */
+  animation: rebond 1.6s infinite;
+}
+
+@keyframes rebond {
+  0%, 100% { transform: translate(-50%, 0) rotate(45deg); }
+  50%      { transform: translate(-50%, 10px) rotate(45deg); }
+}
+
+/* =========================================================
+   5b. À PROPOS
+   ========================================================= */
+.apropos {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.apropos-texte {
+  flex: 1; /* prend toute la place, même sans photo */
+}
+
+.apropos-texte p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-top: 1.2rem;
+}
+
+/* petit mot manuscrit gris, comme "(add me!)" chez Sharon */
+.petite-note {
+  font-family: var(--manuscrite);
+  color: #999999;
+  font-size: 1.3rem;
+}
+
+.photo-apropos {
+  width: 380px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   5c. MA BOÎTE À OUTILS
+   ========================================================= */
+/* 4 cartes : web, mobile, programmation, outils */
+.groupes-outils {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.groupe-outils {
+  background: var(--blanc);
+  border: 1.5px solid #F3E1E1;
+  border-radius: 16px;
+  padding: 1.5rem 1.8rem 2rem;
+}
+
+.groupe-outils h3 {
+  font-size: 1.3rem;
+  color: var(--rose);
+}
+
+.grille-outils {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem 2.2rem;
+  margin-top: 1.4rem;
+}
+
+.grille-outils li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.grille-outils i {
+  font-size: 3.2rem;
+  color: #666666;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.grille-outils span {
+  font-family: var(--manuscrite);
+  font-size: 1.5rem;
+  color: var(--fonce);
+}
+
+/* au survol, l'icône devient rose et grandit un peu */
+.grille-outils li:hover i {
+  color: var(--rose);
+  transform: scale(1.15);
+}
+
+/* =========================================================
+   6. PROJETS
+   ========================================================= */
+.section {
+  padding: 5rem 13%;
+}
+
+.grille-projets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 grandes cartes par ligne */
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* la section Projets est un peu plus large que les autres */
+#projets {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.carte {
+  position: relative; /* pour placer la face "survol" par-dessus */
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--blanc);
+  border: 1.5px solid #F3E1E1;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* L'image remplit toute la carte (plus de texte en dessous) */
+.carte img {
+  width: 100%;
+  aspect-ratio: 16 / 10; /* format paysage, comme les captures d'écran */
+  object-fit: cover;
+  object-position: top; /* on voit le haut de la capture */
+  transition: transform 0.5s;
+}
+
+/* s'il reste une carte seule sur la dernière ligne, on la centre */
+.carte:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - 1rem);
+}
+
+/* petit zoom de l'image au survol */
+.carte:hover img {
+  transform: scale(1.05);
+}
+
+/* La face "survol" : cachée au départ */
+.carte-survol {
+  position: absolute;
+  inset: 0; /* couvre toute la carte */
+  background: rgba(43, 43, 43, 0.94);
+  color: var(--blanc);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.carte-survol h3 {
+  color: var(--blanc);
+  font-size: 1.7rem;
+}
+.carte-survol p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.carte-survol .boutons {
+  justify-content: center;
+}
+
+/* Au survol de la carte, la face apparaît */
+.carte:hover .carte-survol {
+  opacity: 1;
+}
+
+/* Étiquettes (tags) */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tags li {
+  background: #FFE8E8;
+  color: var(--rose);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+}
+/* Étiquettes au survol : bien espacées, comme chez Sharon */
+.carte-survol .tags {
+  width: 100%;
+  max-width: 460px;
+  justify-content: space-evenly; /* espace égal entre les étiquettes */
+  gap: 1rem;
+  margin: 0.6rem 0;
+}
+.carte-survol .tags li {
+  background: var(--blanc);
+  color: #777777;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 0.35rem 1.1rem;
+}
+
+/* Boutons des projets : au survol, le fond devient blanc rosé */
+.carte-survol .boutons {
+  gap: 1.5rem;
+}
+.carte-survol .btn:hover {
+  background: var(--rose-pale);
+  border-color: var(--rose-pale);
+  color: var(--rose);
+}
+
+/* =========================================================
+   7. CV + CONTACT
+   ========================================================= */
+.fond-rose {
+  background: var(--rose-pale);
+  padding: 5rem 13%;
+}
+
+.deux-colonnes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.formation {
+  margin-bottom: 0.7rem;
+}
+
+#cv h3 {
+  font-size: 1.25rem;
+  margin: 1.8rem 0 0.6rem;
+}
+
+.certifs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.certifs li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--blanc);
+  border: 1.5px solid #F3E1E1;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+.certifs div {
+  flex: 1; /* prend toute la place disponible au milieu */
+}
+.certifs strong {
+  display: block;
+  color: var(--fonce);
+}
+.certifs small {
+  color: #888888;
+}
+.certifs a {
+  color: var(--rose);
+  font-weight: 700;
+}
+.coche {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--rose);
+  color: var(--blanc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+#contact > p {
+  margin: 0.8rem 0 1.5rem;
+  font-size: 1.1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--rose-bordure);
+  border-radius: 6px;
+  font-family: var(--police);
+  font-size: 1rem;
+  background: var(--blanc);
+  resize: vertical;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--rose);
+}
+
+form .btn {
+  align-self: flex-start; /* le bouton ne prend pas toute la largeur */
+}
+
+.infos-contact {
+  margin-bottom: 1.5rem;
+  line-height: 2;
+}
+.infos-contact a {
+  color: var(--rose);
+  font-weight: 700;
+}
+
+/* Icônes LinkedIn et GitHub dans la section Contact */
+.reseaux {
+  display: flex;
+  gap: 3.5rem;
+  margin: 0.5rem 0 2rem 1rem;
+}
+.reseaux i {
+  font-size: 2.6rem;
+  color: var(--rose);
+  transition: transform 0.3s, color 0.3s;
+}
+.reseaux a:hover i {
+  transform: translateY(-4px) scale(1.1);
+  color: #e65858;
+}
+
+.confirmation {
+  color: #2E9E5B;
+  font-weight: 700;
+}
+
+/* =========================================================
+   8. FOOTER
+   ========================================================= */
+.footer {
+  background: var(--rose);
+  color: var(--blanc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 1rem;
+  padding: 1.8rem 13%;
+}
+.liens-footer {
+  display: flex;
+  gap: 1.8rem;
+}
+.liens-footer i {
+  font-size: 1.8rem;
+  color: var(--blanc);
+  transition: transform 0.3s;
+}
+.liens-footer a:hover i {
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   9. RESPONSIVE : tablette et mobile
+   ========================================================= */
+
+/* Tablette (moins de 1000px) */
+@media (max-width: 1000px) {
+  .nav {
+    right: 6%;
+  }
+  .header,
+  .hero,
+  .section,
+  .fond-rose,
+  .footer {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  .grille-projets {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  }
+  .apropos {
+    gap: 2rem;
+  }
+  .photo-apropos {
+    width: 280px;
+    height: 340px;
+  }
+  .photo {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+/* Mobile (moins de 768px) */
+@media (max-width: 768px) {
+  /* Sur mobile, le menu prend toute la largeur */
+  .nav {
+    left: 0;
+    right: 0;
+    align-items: center;
+    border-radius: 0;
+  }
+  .nav a {
+    align-self: center;
+  }
+
+  .fleche { display: none; } /* inutile sur mobile */
+
+  .apropos {
+    flex-direction: column; /* la photo passe sous le texte */
+    gap: 2rem;
+  }
+  .photo-apropos {
+    width: 100%;
+    max-width: 380px;
+    height: 400px;
+  }
+  .groupes-outils {
+    grid-template-columns: 1fr; /* une carte par ligne */
+  }
+  .grille-outils {
+    gap: 1.5rem 1.4rem;
+  }
+  .grille-outils i { font-size: 2.6rem; }
+  .carte:last-child:nth-child(odd) { width: 100%; }
+  /* sur mobile, cartes carrées pour que la description tienne */
+  .carte img { aspect-ratio: 1 / 1; }
+  .carte-survol { gap: 0.7rem; padding: 1rem; }
+  .carte-survol h3 { font-size: 1.35rem; }
+  .carte-survol p { font-size: 0.95rem; }
+  .grille-outils span { font-size: 1.2rem; }
+
+  .hero {
+    flex-direction: column-reverse; /* la photo passe au-dessus du texte */
+    text-align: center;
+    min-height: auto;
+    gap: 2rem;
+  }
+  .hero h1 { font-size: 2.3rem; }
+  .hero h1::after { left: 12%; right: 12%; } /* surlignage centré sous le titre */
+  .hero h2 { font-size: 1.4rem; }
+  .hero-texte > p:not(.note) { font-size: 1.1rem; }
+  .hero .boutons { justify-content: center; }
+  .photo {
+    width: 200px;
+    height: 200px;
+  }
+
+  .titre-section { font-size: 2rem; }
+
+  .grille-projets,
+  .deux-colonnes {
+    grid-template-columns: 1fr; /* une seule colonne */
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =========================================================
+   10. ANIMATIONS D'APPARITION AU DÉFILEMENT
+   Le JavaScript ajoute la classe "apparition" aux éléments,
+   puis "visible" quand ils arrivent à l'écran.
+   ========================================================= */
+.animations .apparition {
+  opacity: 0;
+  transform: translateY(40px); /* l'élément part un peu plus bas */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--delai, 0s); /* décalage pour apparaître un par un */
+}
+
+.animations .apparition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante : arrive depuis la gauche ou la droite */
+.animations .apparition.depuis-gauche { transform: translateX(-60px); }
+.animations .apparition.depuis-droite { transform: translateX(60px); }
+.animations .apparition.depuis-gauche.visible,
+.animations .apparition.depuis-droite.visible { transform: translateX(0); }
+
+/* Respecte les personnes qui ont désactivé les animations dans leur système */
+@media (prefers-reduced-motion: reduce) {
+  .animations .apparition {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
